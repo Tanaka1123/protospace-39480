@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   def index
     @prototypes = Prototype.all
@@ -26,11 +26,11 @@ def show
 end
 
   def edit
-    @prototype = Prototype.find(params[:id])
+    @prototype = current_user.prototype.find(params[:id])
   end
 
   def update
-    @prototype = Prototype.find(params[:id])
+    @prototype = current_user.prototype.find(params[:id])
 
     if @prototype.update(prototype_params)
       redirect_to prototype_path(@prototype), notice: "Prototype was successfully updated."
