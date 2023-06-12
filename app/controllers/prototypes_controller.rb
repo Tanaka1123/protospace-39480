@@ -26,11 +26,11 @@ def show
 end
 
   def edit
-    @prototype = current_user.prototype.find(params[:id])
+    @prototype = current_user.prototypes.find(params[:id])
   end
 
   def update
-    @prototype = current_user.prototype.find(params[:id])
+    @prototype = current_user.prototypes.find(params[:id])
 
     if @prototype.update(prototype_params)
       redirect_to prototype_path(@prototype), notice: "Prototype was successfully updated."
